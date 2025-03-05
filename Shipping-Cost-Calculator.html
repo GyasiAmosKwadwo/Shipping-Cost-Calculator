@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Shipping Cost Calculator</title>
+    <style>
+
+        .container{
+            text-align: center;
+            margin-top: 100px;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            height: 400px;
+            margin-left: 10%;
+            background-color: rgb(194, 188, 188);
+        }
+
+        .container button{
+            background-color: rgb(233, 232, 226);
+            border: 1px solid rgb(195, 195, 195);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Amazon Shipping Cost Calculator</h3>
+
+        <p>Product above $40 = +$5</p>
+        <p>Product below $40 = Free</p><br>
+
+        <input class="js-input-field" type="number" placeholder="Enter product price. eg.500" onkeydown="hundleEnterEvent()">
+        <button onclick="calculateCost()">Calculate</button><br>
+        <p class="js-total-cost"></p>
+        <br><br>
+
+
+
+
+        <button class="js-subscribe-button" onclick="subscribe()">Subscribe</button>
+        <p class="js-thanks-note"></p>
+    </div>
+
+    <script>
+        
+        function calculateCost(){
+            const inputValue = document.querySelector('.js-input-field');
+            let productCost = Number(inputValue.value);
+
+            if (productCost > 40){
+                productCost += 5;
+            }
+
+            document.querySelector('.js-total-cost').innerHTML = `Total: $${productCost}`
+        }
+
+        function hundleEnterEvent(){
+            keyPressed = event.key;
+            if (keyPressed === 'Enter'){
+                calculateCost();
+            }
+        }
+
+
+        
+
+        function subscribe(){
+            if (document.querySelector('.js-subscribe-button').innerText === 'Subscribe') {
+            document.querySelector('.js-subscribe-button').innerText = 'Subscribed';
+            document.querySelector('.js-thanks-note').innerHTML = 'Thank you for subscribing to my channel'
+        }else 
+        {
+            document.querySelector('.js-subscribe-button').innerText = 'Subscribe';
+            document.querySelector('.js-thanks-note').innerHTML = 'You have unsubscribed to my channel'
+        }
+    
+        }
+    </script>
+</body>
+</html>
